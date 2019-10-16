@@ -1,18 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component, Fragment} from 'react';
+import {Container } from 'semantic-ui-react';
+import EventDashboard from './features/event/EventDashboard/eventDashboard';
+import NavBar from './features/nav/navBar';
+import './index.css'
 
-function App() {
+
+class App extends Component{
+  render(){
   return (
-    <div className="App">
-        <button className="ui icon button" onClick={this.handleTestgit}>
-          <i className='smile icon'></i>
-          click me
-        </button>
-        
+    <Fragment>
+        <NavBar />
+          <Container className='main'>
+        <EventDashboard/>
+      </Container>
+    </Fragment>
 
-    </div>
   );
+}
 }
 
 export default App;
