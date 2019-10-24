@@ -8,7 +8,7 @@ class NavBar extends Component {
                       <Menu inverted fixed="top">
                         <Container>
                           <Menu.Item header>
-                            <img src="assets/logo.png" alt="logo" />
+                            <img src="https://image.flaticon.com/icons/png/512/87/87386.png" alt="logo" />
                             Re-vents
                           </Menu.Item>
                           <Menu.Item name="Events" />

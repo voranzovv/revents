@@ -118,3 +118,7 @@ body {
 .dropzone--isActive {
   border: dashed 3px green;
 }
+
+.elpadding{
+  padding-top:10px;
+}
