@@ -5,7 +5,7 @@ class EventList extends Component {
     render() { 
         const {events} = this.props
         return ( 
-            <Fragment className='container'>
+            <Fragment>
                 {events.map(event =>(
                     <EventListItem key={event.id} event={event}/>
                 ))}
