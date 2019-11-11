@@ -9,6 +9,13 @@ export default class EventForm extends Component {
     venue: "",
     hostedBy: ""
   };
+  componentDidMount() {
+    if(this.props.selectEvent !== null){
+      this.setState({ ...this.props.selectEvent });
+       console.log(this.props);
+    }
+  }
+  
 
   handleInputChange = ({ target:{name, value}}) => {
     this.setState({ [name]: value });

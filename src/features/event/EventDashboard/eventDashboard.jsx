@@ -58,38 +58,56 @@ const eventsFromDashboard = [
 class EventDashboard extends Component {
   state = {
     events: eventsFromDashboard,
-    isOpen: false
+    isOpen: false,
+    selectEvent: null
   };
 
-  handleIsOpenToggle = () =>
-    this.setState(({ isOpen }) => ({
-      isOpen: !isOpen
-    }));
+  // handleIsOpenToggle = () =>
+  //   this.setState(({ isOpen }) => ({
+  //     isOpen: !isOpen
+  //   }));
+
+  handleCreateFormOpen = () => {
+    this.setState({ isOpen: true, selectEvent: null });
+  };
+
+  handleFormCancel = () => {
+    this.setState({ isOpen: false });
+  };
 
   handleCreateEvent = newEvent => {
     newEvent.id = cuid();
     newEvent.hostPhotoURL = "/assets/user.png";
-    this.setState(({ events }) => ({ 
-      events: [...events, newEvent] 
+    this.setState(({ events }) => ({
+      events: [...events, newEvent]
     }));
-    console.log(this.state);
+    };
+
+  handleSelectEvent = event => {
+    this.setState({ selectEvent: event, isOpen: true });
   };
 
   render() {
-    const { events, isOpen } = this.state;
+    const { events, isOpen , selectEvent} = this.state;
     return (
       <Grid>
         <Grid.Column width={10}>
-          <EventList events={events} />
+          <EventList events={events} selectEvent={this.handleSelectEvent} />
         </Grid.Column>
 
         <Grid.Column width={6}>
           <Button
             positive
             content="Create Events"
-            onClick={this.handleIsOpenToggle}
+            onClick={this.handleCreateFormOpen}
           />
-          {isOpen && <EventForm cancleFormOpen={this.handleIsOpenToggle} createEvent={this.handleCreateEvent} />}
+          {isOpen && (
+            <EventForm
+            selectEvent={selectEvent}
+              cancleFormOpen={this.handleFormCancel}
+              createEvent={this.handleCreateEvent}
+            />
+          )}
         </Grid.Column>
       </Grid>
     );
