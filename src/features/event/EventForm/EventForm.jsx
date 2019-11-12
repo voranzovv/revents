@@ -22,9 +22,13 @@ export default class EventForm extends Component {
   };
 
   handleFormSubmit = (e) =>{
-   // console.log(this.props.createEvent);
-   e.preventDefault();
+    e.preventDefault();
+  if(this.state.id){
+    this.props.updatedEvent(this.state)
+  }
+  else{
     this.props.createEvent(this.state);
+  }
   }
 
   render() {
