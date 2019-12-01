@@ -3,11 +3,21 @@ import { Grid, Button } from "semantic-ui-react";
 import EventList from "../EventList/EventList";
 import EventForm from "../EventForm/EventForm";
 import cuid from "cuid";
+import { createEvent, deleteEvent, updateEvent } from "../eventActions";
+import { connect } from "react-redux";
 
+const mapState = state => ({
+  events: state.events
+});
+
+const actions = {
+  createEvent,
+  deleteEvent,
+  updateEvent
+};
 
 class EventDashboard extends Component {
   state = {
-    events: eventsFromDashboard,
     isOpen: false,
     selectEvent: null
   };
@@ -52,13 +62,13 @@ class EventDashboard extends Component {
   };
 
   handleDeleteEvent = id => {
-    this.setState(({ events }) => ({
-      events: events.filter(e => e.id !== id)
-    }));
+    this.props.deleteEvent(id);
   };
 
   render() {
-    const { events, isOpen, selectEvent } = this.state;
+    const { isOpen, selectEvent } = this.state;
+    const { events } = this.props;
+    console.log(this.props);
     return (
       <Grid>
         <Grid.Column width={10}>
@@ -90,4 +100,4 @@ class EventDashboard extends Component {
   }
 }
 
-export default EventDashboard;
+export default connect(mapState, actions)(EventDashboard);
