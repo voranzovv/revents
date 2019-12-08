@@ -40,7 +40,7 @@ class EventDashboard extends Component {
     newEvent.hostPhotoURL = "/assets/user.png";
     this.props.createEvent(newEvent);
     this.setState(({ events }) => ({
-      events: [...events, newEvent]
+      isOpen:false
     }));
   };
 
@@ -51,7 +51,7 @@ class EventDashboard extends Component {
   handleUpdateEvent = updatedEvent => {
     this.props.updateEvent(updatedEvent);
     this.setState(({ events }) => ({
-      isOpen: false,
+      isOpen: false, 
       selectEvent: null
     }));
   };
